@@ -1,0 +1,239 @@
+/* ================================================
+   ESTILOS - Desafios Práticos (RoboTech)
+   Estrutura de cards inspirada no layout do Del Company,
+   adaptada às variáveis de cor definidas em styles.css
+   ================================================ */
+
+.desafios-section {
+    padding: 55px 0 90px;
+    background: linear-gradient(180deg, #ffffff 0%, var(--light-bg) 100%);
+}
+
+.desafios-intro {
+    background: white;
+    border-left: 5px solid var(--accent-color);
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin-bottom: 45px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    color: #475569;
+    font-size: 0.95rem;
+}
+
+.desafios-intro strong {
+    color: var(--text-dark);
+}
+
+/* ---------- GRADE DE DESAFIOS ---------- */
+.desafios-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 45px;
+}
+
+.desafio-card {
+    background: white;
+    border-radius: 18px;
+    padding: 32px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    border-top: 5px solid var(--accent-color);
+    transition: var(--transition);
+}
+
+.desafio-card:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    border-top-color: var(--secondary-color);
+}
+
+.desafio-badge-num {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 5px 15px;
+    border-radius: 50px;
+    margin-bottom: 14px;
+}
+
+.desafio-card h3 {
+    color: var(--text-dark);
+    font-size: 1.45rem;
+    margin-bottom: 14px;
+}
+
+.desafio-card > p {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+/* ---------- TAGS DE COMPONENTES ---------- */
+.tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.tag-badge {
+    background: var(--light-bg);
+    color: var(--primary-color);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 5px 13px;
+    border-radius: 50px;
+}
+
+/* ---------- CONTEÚDO EM DUAS COLUNAS ---------- */
+.desafio-conteudo {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+@media (max-width: 880px) {
+    .desafio-conteudo {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- VÍDEO DO YOUTUBE (SHORTS 9:16) ---------- */
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    padding-bottom: 0;
+    aspect-ratio: 9 / 16;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+.video-container iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Variação para vídeos em formato horizontal (16:9) */
+.video-container.horizontal {
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+.video-legenda {
+    text-align: center;
+    color: #64748b;
+    font-size: 0.83rem;
+    margin-top: 10px;
+}
+
+.video-link {
+    display: block;
+    text-align: center;
+    margin-top: 6px;
+    font-size: 0.83rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.video-link:hover {
+    text-decoration: underline;
+}
+
+/* Aviso quando o vídeo ainda não foi publicado */
+.video-pendente {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    aspect-ratio: 9 / 16;
+    border: 2px dashed var(--border-color);
+    border-radius: 14px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    padding: 20px;
+    background: var(--light-bg);
+}
+
+/* ---------- REGRAS DE FUNCIONAMENTO ---------- */
+.desafio-regras h4,
+.desafio-video h4 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+.desafio-regras ul {
+    list-style: none;
+    margin-bottom: 18px;
+}
+
+.desafio-regras ul li {
+    padding: 9px 0 9px 26px;
+    position: relative;
+    color: var(--text-dark);
+    font-size: 0.92rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.desafio-regras ul li::before {
+    content: "➜";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+.desafio-bonus {
+    background: var(--light-bg);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 0.88rem;
+    color: #475569;
+}
+
+.desafio-bonus strong {
+    color: var(--secondary-color);
+}
+
+.desafio-tinkercad {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 10px 18px;
+    border: 2px dashed var(--border-color);
+    border-radius: 10px;
+    color: #64748b;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.desafio-tinkercad:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* ---------- BLOCO DE CÓDIGO ---------- */
+.desafio-codigo {
+    margin-top: 28px;
+}
+
+.desafio-codigo h4 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-bottom: 12px;
+}

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../assets/img/incons.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/sensores.css">
+    <title>Arduino - RoboTech</title>
+</head>
+
+<body>
+    <!-- CABEÇALHO E MENU DE NAVEGAÇÃO -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🤖 RoboTech</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Início</a></li>
+                    <li><a href="../index.html#conceitos">Conceitos</a></li>
+                    <li><a href="../index.html#robo-list">Robôs</a></li>
+                    <li class="dropdown">
+                        <a href="#">Modelos ▼</a>
+                        <div class="dropdown-content">
+                            <a href="./cartesiano.html">Robô Cartesiano</a>
+                            <a href="./scara.html">Robô SCARA</a>
+                            <a href="./articulado.html">Robô Articulado</a>
+                            <a href="./cilindrico.html">Robô Cilíndrico</a>
+                            <a href="./delta.html">Robô Delta</a>
+                            <a href="./polar.html">Robô Polar</a>
+                            <a href="./colaborativo.html">Robô Colaborativo</a>
+                        </div>
+                    </li>
+                    <li><a href="./sensores.html">Sensores IoT</a></li>
+                    <li><a href="./arduino.html" class="active">Arduino</a></li>
+                    <li><a href="./desafios.html">Desafios</a></li>
+                    <li><a href="../index.html#contato">Contato</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO DA PÁGINA -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>🔌 Arduino</h1>
+            <p>
+                Conceito, características, funcionamento e exemplos práticos de programação do Arduino
+                aplicados à leitura de sensores em projetos de IoT e Automação Industrial.
+            </p>
+        </div>
+    </section>
+
+    <!-- CONCEITO E CARACTERÍSTICAS -->
+    <section class="arduino-intro">
+        <div class="container split">
+            <div class="content-text">
+                <h2>O que é o Arduino?</h2>
+                <p>
+                    Arduino é uma plataforma de prototipagem eletrônica de hardware livre (open-source),
+                    composta por uma placa com um microcontrolador e um ambiente de desenvolvimento
+                    integrado (IDE) próprio, baseado em uma linguagem simplificada derivada de C/C++.
+                </p>
+                <p>
+                    Criado para facilitar o acesso à eletrônica embarcada, o Arduino permite ler sinais de
+                    sensores (entradas), processar essas informações e controlar atuadores como motores,
+                    relés e LEDs (saídas), sendo amplamente utilizado em projetos educacionais, de automação
+                    residencial, robótica e Internet das Coisas (IoT).
+                </p>
+                <h2>Como Funciona</h2>
+                <p>
+                    O código-fonte, chamado de <em>sketch</em>, é escrito na IDE do Arduino e enviado para a
+                    placa através de uma porta USB. O programa é dividido basicamente em duas funções:
+                    <strong>setup()</strong>, executada uma única vez para inicializar pinos e bibliotecas, e
+                    <strong>loop()</strong>, executada repetidamente enquanto a placa estiver ligada, lendo
+                    sensores e controlando saídas em tempo real.
+                </p>
+            </div>
+            <div class="arduino-specs">
+                <h2>Características Técnicas (Arduino Uno)</h2>
+                <ul>
+                    <li><span>Microcontrolador</span> <strong>ATmega328P</strong></li>
+                    <li><span>Tensão de operação</span> <strong>5V</strong></li>
+                    <li><span>Tensão de entrada recomendada</span> <strong>7V a 12V</strong></li>
+                    <li><span>Pinos digitais I/O</span> <strong>14 (6 com PWM)</strong></li>
+                    <li><span>Pinos de entrada analógica</span> <strong>6 (A0 a A5)</strong></li>
+                    <li><span>Memória Flash</span> <strong>32 KB</strong></li>
+                    <li><span>Memória SRAM</span> <strong>2 KB</strong></li>
+                    <li><span>Clock</span> <strong>16 MHz</strong></li>
+                    <li><span>Comunicação</span> <strong>USB, UART, I2C, SPI</strong></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXEMPLOS DE PROGRAMAÇÃO -->
+    <section class="exemplos-section">
+        <div class="container">
+            <h2 class="section-title">Exemplos de Programação</h2>
+            <p class="contador-resultados" style="margin-bottom: 20px;">
+                Selecione um sensor abaixo para ver um exemplo comentado de leitura com o Arduino.
+            </p>
+
+            <div class="exemplos-tabs" id="exemplos-tabs">
+                <button class="tab-btn active" data-alvo="ex-dht11">DHT11</button>
+                <button class="tab-btn" data-alvo="ex-lm35">LM35</button>
+                <button class="tab-btn" data-alvo="ex-hcsr04">HC-SR04</button>
+                <button class="tab-btn" data-alvo="ex-pir">PIR HC-SR501</button>
+                <button class="tab-btn" data-alvo="ex-ldr">LDR</button>
+                <button class="tab-btn" data-alvo="ex-mq2">MQ-2</button>
+                <button class="tab-btn" data-alvo="ex-solo">Umidade do Solo</button>
+                <button class="tab-btn" data-alvo="ex-yfs201">YF-S201</button>
+                <button class="tab-btn" data-alvo="ex-acs712">ACS712</button>
+                <button class="tab-btn" data-alvo="ex-hall">Sensor Hall A3144</button>
+                <button class="tab-btn" data-alvo="ex-mfrc522">MFRC522</button>
+                <button class="tab-btn" data-alvo="ex-encoder">Encoder KY-040</button>
+            </div>
+
+            
+            <div class="exemplo-codigo active" id="ex-dht11">
+                <h3>DHT11 - Temperatura e Umidade</h3>
+                <p class="exemplo-desc">Lê a temperatura e a umidade do ar usando a biblioteca DHT.</p>
+                <div class="exemplo-ligacoes"><strong>Ligações:</strong> Pino de dados do DHT11 → Pino digital 2 do Arduino (com resistor de pull-up de 10kΩ, se necessário)</div>
+                <div class="code-wrapper">
+                    <button class="btn-copiar">📋 Copiar</button>
+                    <pre>// Exemplo: Leitura de Temperatura e Umidade com o sensor DHT11
+#include &lt;DHT.h&gt;
+
+#define PINO_DHT 2      // Pino digital conectado ao sensor
+#define TIPO_DHT DHT11  // Define o modelo do sensor
+
+DHT dht(PINO_DHT, TIPO_DHT);
+
+void setup() {
+  Serial.begin(9600);
+  dht.begin(); // Inicializa o sensor
+}
+
+void loop() {
+  float umidade = dht.readHumidity();        // Lê a umidade relativa (%)
+  float temperatura = dht.readTemperature(); // Lê a temperatura (°C)
+
+  // Verifica se a leitura falhou
+  if (isnan(umidade) || isnan(temperatura)) {
+    Serial.println(&quot;Falha ao ler o sensor DHT11!&quot;);
+    return;
+  }
+
+  Serial.print(&quot;Temperatura: &quot;);
+  Serial.print(temperatura);
+  Serial.print(&quot; C | Umidade: &quot;);
+  Serial.print(umidade);
+  Serial.println(&quot; %&quot;);
+
+  delay(2000); // Aguarda 2 segundos entre leituras
+}</pre>
+                </div>
+            </div>
+
+            <div class="exemplo-codigo" id="ex-lm35">
+                <h3>LM35 - Temperatura Analógica</h3>
+                <p class="exemplo-desc">Converte a tensão de saída do LM35 em graus Celsius.</p>
+                <div class="exemplo-ligacoes"><strong>Ligações:</strong> Saída do LM35 → Pino analógico A0 do Arduino</div>
+                <div class="code-wrapper">
+                    <button class="btn-copiar">📋 Copiar</button>
+                    <pre>// Exemplo: Leitura de Temperatura Analógica com o sensor LM35
+const int PINO_LM35 = A0; // Pino analógico conectado à saída do sensor
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int leituraADC = analogRead(PINO_LM35);      // Lê o valor bruto (0-1023)
+  float tensao = leituraADC * (5.0 / 1023.0);  // Converte para tensão (0-5V)
+  float temperatura = tensao * 100.0;          // LM35: 10 mV por °C
+
+  Serial.print(&quot;Temperatura: &quot;);
+  Serial.print(temperatura);
+  Serial.println(&quot; C&quot;);
+
+  delay(1000);
+}</pre>
+                </div>
+            </div>
+
+            <div class="exemplo-codigo" id="ex-hcsr04">
+                <h3>HC-SR04 - Medição de Distância</h3>
+                <p class="exemplo-desc">Calcula a distância a partir do tempo de retorno do pulso ultrassônico.</p>
+                <div class="exemplo-ligacoes"><strong>Ligações:</strong> Trigger → Pino digital 9 | Echo → Pino digital 10</div>
+                <div class="code-wrapper">
+                    <button class="btn-copiar">📋 Copiar</button>
+                    <pre>// Exemplo: Medição de Distância com o sensor ultrassônico HC-SR04
+const int PINO_TRIGGER = 9;
+const int PINO_ECHO = 10;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(PINO_TRIGGER, OUTPUT);
+  pinMode(PINO_ECHO, INPUT);
+}
+
+void loop() {
+  // Envia um pulso ultrassônico de 10 microssegundos
+  digitalWrite(PINO_TRIGGER, LOW);
+  delayMicroseconds(2);
+  digitalWrite(PINO_TRIGGER, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(PINO_TRIGGER, LOW);
+
+  // Mede o tempo de retorno do eco (em microssegundos)
+  long duracao = pulseIn(PINO_ECHO, HIGH);
+
+  // Velocidade do som ~0,034 cm/us, dividido por 2 (ida e volta)
+  float distancia = duracao * 0.034 / 2;
+
+  Serial.print(&quot;Distancia: &quot;);
+  Serial.print(distancia);
+  Serial.println(&quot; cm&quot;);
+
+  delay(500);
+}</pre>
+                </div>
+            </div>
+
+            <div class="exemplo-codigo" id="ex-pir">
+                <h3>PIR HC-SR501 - Detecção de Presença</h3>
+                <p class="exemplo-desc">Aciona um LED sempre que movimento é detectado no ambiente.</p>
+                <div class="exemplo-ligacoes"><strong>Ligações:</strong> Saída OUT do PIR → Pino digital 3 | LED → Pino digital 13</div>
+                <div class="code-wrapper">
+                    <button class="btn-copiar">📋 Copiar</button>
+                    <pre>// Exemplo: Detecção de Presença com o sensor PIR HC-SR501
+const int PINO_PIR = 3;
+const int PINO_LED = 13;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(PINO_PIR, INPUT);
+  pinMode(PINO_LED, OUTPUT);
+}
+
+void loop() {
+  int movimento = digitalRead(PINO_PIR); // HIGH = movimento detectado
+
+  if (movimento == HIGH) {
+    digitalWrite(PINO_LED, HIGH);
+    Serial.println(&quot;Movimento detectado!&quot;);
+  } else {
+    digitalWrite(PINO_LED, LOW);
+  }
+
+  delay(200);
+}</pre>
+                </div>
+            </div>
+
+            <div class="exemplo-codigo" id="ex-ldr">
+                <h3>LDR - Controle Automático de Iluminação</h3>
+                <p class="exemplo-desc">Aciona um relé (lâmpada) automaticamente quando o ambiente escurece.</p>
+                <div class="exemplo-ligacoes"><strong>Ligações:</strong> LDR em divisor de tensão → Pino analógico A0 | Relé → Pino digital 7</div>
+                <div class="code-wrapper">
+                    <button class="btn-copiar">📋 Copiar</button>
+                    <pre>// Exemplo: Controle Automatico de Iluminacao com LDR
+const int PINO_LDR = A0;
+const int PINO_RELE = 7;
+const int LIMIAR_ESCURO = 400; // Ajuste conforme o ambiente
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(PINO_RELE, OUTPUT);
+}
+
+void loop() {
+  int luminosidade = analogRead(PINO_LDR); // 0 (escuro) a 1023 (claro)
+
+  Serial.print(&quot;Luminosidade: &quot;);
+  Serial.println(luminosidade);
+
+  if (luminosidade &lt; LIMIAR_ESCURO) {
+    digitalWrite(PINO_RELE, HIGH); // Aciona a lampada
+  } else {
+    digitalWrite(PINO_RELE, LOW);  // Desliga a lampada
+  }
+
+  delay(1000);
+}</pre>
+                </div>
+            </div>
+
+            <div class="exemplo-codigo" id="ex-mq2">
+                <h3>MQ-2 - Detecção de Gás e Fumaça</h3>
+                <p class="exemplo-desc">Monitora a concentração de gás e dispara um alarme sonoro em caso de vazamento.</p>
+                <div class="exemplo-ligacoes"><strong>Ligações:</strong> Saída analógica do MQ-2 → Pino A0 | Buzzer → Pino digital 8</div>
+                <div class="code-wrapper">
+                    <button class="btn-copiar">📋 Copiar</button>
+                    <pre>// Exemplo: Deteccao de Gas/Fumaca com o sensor MQ-2
+const int PINO_MQ2 = A0;
+const int LIMIAR_GAS = 300; // Ajustar conforme calibracao do ambiente
+const int PINO_BUZZER = 8;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(PINO_BUZZER, OUTPUT);
+  Serial.println(&quot;Aquecendo o sensor MQ-2...&quot;);
+  delay(20000); // Tempo de pre-aquecimento recomendado
+}
+
+void loop() {
+  int nivelGas = analogRead(PINO_MQ2); // Leitura analogica (0-1023)
+
+  Serial.print(&quot;Nivel de gas: &quot;);
+  Serial.println(nivelGas);
+
+  if (nivelGas &gt; LIMIAR_GAS) {
+    digitalWrite(PINO_BUZZER, HIGH); // Aciona o alarme sonoro
+    Serial.println(&quot;ALERTA: Vazamento de gas detectado!&quot;);
+  } else {
+    digitalWrite(PINO_BUZZER, LOW);
+  }
+
+  delay(1000);
+}</pre>
+                </div>
+            </div>
+
+            <div class="exemplo-codigo" id="ex-solo">
+                <h3>Umidade do Solo - Irrigação Automática</h3>
+                <p class="exemplo-desc">Liga uma bomba de irrigação automaticamente quando o solo está seco.</p>
+                <div class="exemplo-ligacoes"><strong>Ligações:</strong> Saída analógica do sensor → Pino A0 | Módulo relé/bomba → Pino digital 6</div>
+                <div class="code-wrapper">
+                    <button class="btn-copiar">📋 Copiar</button>
+                    <pre>// Exemplo: Irrigacao Automatica com Sensor Capacitivo de Umidade do Solo
+const int PINO_SENSOR = A0;
+const int PINO_BOMBA = 6;
+
+// Valores de calibracao (ajustar conforme o sensor utilizado)
+const int SOLO_SECO = 800;
+const int SOLO_MOLHADO = 300;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(PINO_BOMBA, OUTPUT);
+}
+
+void loop() {
+  int leitura = analogRead(PINO_SENSOR);
+  int umidadePercentual = map(leitura, SOLO_SECO, SOLO_MOLHADO, 0, 100);
+  umidadePercentual = constrain(umidadePercentual, 0, 100);
+
+  Serial.print(&quot;Umidade do solo: &quot;);
+  Serial.print(umidadePercentual);
+  Serial.println(&quot; %&quot;);
+
+  if (umidadePercentual &lt; 30) {
+    digitalWrite(PINO_BOMBA, HIGH); // Liga a bomba de irrigacao
+  } else {
+    digitalWrite(PINO_BOMBA, LOW);  // Desliga a bomba
+  }
+
+  delay(2000);
+}</pre>
+                </div>
+            </div>
+
+            <div class="exemplo-codigo" id="ex-yfs201">
+                <h3>YF-S201 - Medição de Vazão de Água</h3>
+                <p class="exemplo-desc">Calcula a vazão de água em litros por minuto contando os pulsos do sensor.</p>
+                <div class="exemplo-ligacoes"><strong>Ligações:</strong> Sinal do YF-S201 → Pino digital 2 (interrupção)</div>
+                <div class="code-wrapper">
+                    <button class="btn-copiar">📋 Copiar</button>
+                    <pre>// Exemplo: Medicao de Vazao de Agua com o sensor YF-S201
+const byte PINO_FLUXO = 2; // Deve ser um pino de interrupcao
+volatile int contadorPulsos = 0;
+unsigned long ultimoTempo = 0;
+float vazaoLmin = 0;
+
+void contarPulso() {
+  contadorPulsos++; // Incrementa a cada pulso gerado pelo sensor
+}
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(PINO_FLUXO, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(PINO_FLUXO), contarPulso, RISING);
+}
+
+void loop() {
+  if (millis() - ultimoTempo &gt;= 1000) { // Calcula a cada 1 segundo
+    detachInterrupt(digitalPinToInterrupt(PINO_FLUXO));
+
+    // Formula do fabricante: frequencia (Hz) / 7,5 = vazao em L/min
+    vazaoLmin = (contadorPulsos / 7.5);
+
+    Serial.print(&quot;Vazao: &quot;);
+    Serial.print(vazaoLmin);
+    Serial.println(&quot; L/min&quot;);
+
+    contadorPulsos = 0;
+    ultimoTempo = millis();
+    attachInterrupt(digitalPinToInterrupt(PINO_FLUXO), contarPulso, RISING);
+  }
+}</pre>
+                </div>
+            </div>
+
+            <div class="exemplo-codigo" id="ex-acs712">
+                <h3>ACS712 - Medição de Corrente Elétrica</h3>
+                <p class="exemplo-desc">Calcula a corrente elétrica em Amperes a partir da tensão de saída do sensor.</p>
+                <div class="exemplo-ligacoes"><strong>Ligações:</strong> Saída OUT do ACS712 → Pino analógico A0</div>
+                <div class="code-wrapper">
+                    <button class="btn-copiar">📋 Copiar</button>
+                    <pre>// Exemplo: Medicao de Corrente Eletrica com o sensor ACS712 (modulo 20A)
+const int PINO_ACS712 = A0;
+const float SENSIBILIDADE = 0.100;   // 100 mV/A para o modulo de 20A
+const float TENSAO_REFERENCIA = 2.5; // Tensao de saida para corrente = 0A
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int leituraADC = analogRead(PINO_ACS712);
+  float tensao = (leituraADC * 5.0) / 1023.0;
+  float corrente = (tensao - TENSAO_REFERENCIA) / SENSIBILIDADE;
+
+  Serial.print(&quot;Corrente: &quot;);
+  Serial.print(corrente);
+  Serial.println(&quot; A&quot;);
+
+  delay(500);
+}</pre>
+                </div>
+            </div>
+
+            <div class="exemplo-codigo" id="ex-hall">
+                <h3>Sensor Hall A3144 - Medição de RPM</h3>
+                <p class="exemplo-desc">Conta os pulsos gerados por um ímã fixado ao eixo para calcular a rotação por minuto.</p>
+                <div class="exemplo-ligacoes"><strong>Ligações:</strong> Saída do A3144 → Pino digital 2 (interrupção)</div>
+                <div class="code-wrapper">
+                    <button class="btn-copiar">📋 Copiar</button>
+                    <pre>// Exemplo: Medicao de Rotacao (RPM) com Sensor Hall A3144
+const byte PINO_HALL = 2; // Pino de interrupcao
+volatile int pulsos = 0;
+unsigned long ultimaLeitura = 0;
+
+void contarPulsoHall() {
+  pulsos++;
+}
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(PINO_HALL, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(PINO_HALL), contarPulsoHall, FALLING);
+}
+
+void loop() {
+  if (millis() - ultimaLeitura &gt;= 1000) {
+    // Considerando 1 ima fixado ao eixo (1 pulso por volta)
+    int rpm = pulsos * 60;
+
+    Serial.print(&quot;Rotacao: &quot;);
+    Serial.print(rpm);
+    Serial.println(&quot; RPM&quot;);
+
+    pulsos = 0;
+    ultimaLeitura = millis();
+  }
+}</pre>
+                </div>
+            </div>
+
+            <div class="exemplo-codigo" id="ex-mfrc522">
+                <h3>MFRC522 - Controle de Acesso RFID</h3>
+                <p class="exemplo-desc">Lê o identificador (UID) de cartões RFID aproximados do módulo leitor.</p>
+                <div class="exemplo-ligacoes"><strong>Ligações:</strong> SDA→10, SCK→13, MOSI→11, MISO→12, RST→9, GND→GND, 3.3V→3.3V</div>
+                <div class="code-wrapper">
+                    <button class="btn-copiar">📋 Copiar</button>
+                    <pre>// Exemplo: Controle de Acesso com o leitor RFID MFRC522
+#include &lt;SPI.h&gt;
+#include &lt;MFRC522.h&gt;
+
+#define PINO_SS   10
+#define PINO_RST  9
+
+MFRC522 leitorRFID(PINO_SS, PINO_RST);
+
+void setup() {
+  Serial.begin(9600);
+  SPI.begin();
+  leitorRFID.PCD_Init(); // Inicializa o modulo MFRC522
+  Serial.println(&quot;Aproxime o cartao do leitor...&quot;);
+}
+
+void loop() {
+  // Verifica se ha um novo cartao presente
+  if (!leitorRFID.PICC_IsNewCardPresent() || !leitorRFID.PICC_ReadCardSerial()) {
+    return;
+  }
+
+  Serial.print(&quot;UID do cartao: &quot;);
+  for (byte i = 0; i &lt; leitorRFID.uid.size; i++) {
+    Serial.print(leitorRFID.uid.uidByte[i], HEX);
+    Serial.print(&quot; &quot;);
+  }
+  Serial.println();
+
+  leitorRFID.PICC_HaltA(); // Encerra a leitura do cartao atual
+}</pre>
+                </div>
+            </div>
+
+            <div class="exemplo-codigo" id="ex-encoder">
+                <h3>Encoder KY-040 - Leitura de Posição</h3>
+                <p class="exemplo-desc">Identifica o sentido de rotação e conta pulsos para determinar a posição do eixo.</p>
+                <div class="exemplo-ligacoes"><strong>Ligações:</strong> CLK→2, DT→3, SW→4, +→5V, GND→GND</div>
+                <div class="code-wrapper">
+                    <button class="btn-copiar">📋 Copiar</button>
+                    <pre>// Exemplo: Leitura de Posicao com o Encoder Rotativo KY-040
+const int PINO_CLK = 2;
+const int PINO_DT = 3;
+const int PINO_SW = 4;
+
+int posicao = 0;
+int ultimoEstadoCLK;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(PINO_CLK, INPUT);
+  pinMode(PINO_DT, INPUT);
+  pinMode(PINO_SW, INPUT_PULLUP);
+
+  ultimoEstadoCLK = digitalRead(PINO_CLK);
+}
+
+void loop() {
+  int estadoCLK = digitalRead(PINO_CLK);
+
+  // Detecta uma nova transicao no canal CLK
+  if (estadoCLK != ultimoEstadoCLK) {
+    // Compara CLK e DT para identificar o sentido de rotacao
+    if (digitalRead(PINO_DT) != estadoCLK) {
+      posicao++; // Sentido horario
+    } else {
+      posicao--; // Sentido anti-horario
+    }
+    Serial.print(&quot;Posicao: &quot;);
+    Serial.println(posicao);
+  }
+  ultimoEstadoCLK = estadoCLK;
+
+  if (digitalRead(PINO_SW) == LOW) {
+    Serial.println(&quot;Botao pressionado - posicao zerada!&quot;);
+    posicao = 0;
+    delay(300); // Debounce simples
+  }
+}</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="../index.html">Início</a></li>
+                        <li><a href="./sensores.html">Sensores IoT</a></li>
+                        <li><a href="./arduino.html">Arduino</a></li>
+                        <li><a href="./desafios.html">Desafios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <a href="https://wa.me/5548998041301" target="_blank">📱 +55(48)99804-1301</a><br>
+                    <a href="https://www.instagram.com/bernardi7072/">📧 @bernardi7072</a><br>
+                    <a href="https://github.com/larssia">👥 @larssia</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 RoboTech.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/arduino.js"></script>
+</body>
+
+</html>

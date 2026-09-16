@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/sensores.css">
+    <link rel="shortcut icon" href="assets/img/incons.png" type="image/x-icon">
+    <title>RoboTech - Robótica Industrial e IoT</title>
+</head>
+<body>
+    <!-- CABEÇALHO E MENU DE NAVEGAÇÃO -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🤖 RoboTech</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Início</a></li>
+                    <li><a href="#conceitos">Conceitos</a></li>
+                    <li><a href="#robo-list">Robôs</a></li>
+                    <li class="dropdown">
+                        <a href="#">Modelos ▼</a>
+                        <div class="dropdown-content">
+                            <a href="./html/cartesiano.html">Robô Cartesiano</a>
+                            <a href="./html/scara.html">Robô SCARA</a>
+                            <a href="./html/articulado.html">Robô Articulado</a>
+                            <a href="./html/cilindrico.html">Robô Cilíndrico</a>
+                            <a href="./html/delta.html">Robô Delta</a>
+                            <a href="./html/polar.html">Robô Polar</a>
+                            <a href="./html/colaborativo.html">Robô Colaborativo</a>
+                        </div>
+                    </li>
+                    <li><a href="./html/sensores.html">Sensores IoT</a></li>
+                    <li><a href="./html/arduino.html">Arduino</a></li>
+                    <li><a href="./html/desafios.html">Desafios</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Bem-vindo ao RoboTech</h2>
+            <p>Explore o futuro da Robótica Industrial e Internet das Coisas</p>
+            <button class="btn-primary" onclick="document.getElementById('conceitos').scrollIntoView({behavior: 'smooth'})">Saiba Mais</button>
+        </div>
+        <div class="hero-background"></div>
+    </section>
+
+    <!-- SEÇÃO DE CONCEITOS -->
+    <section id="conceitos" class="conceitos">
+        <div class="container">
+            <h2 class="section-title">Conceitos Fundamentais</h2>
+            <div class="conceitos-grid">
+                <!-- CARD 1: IoT -->
+                <div class="concept-card">
+                    <div class="icon">📡</div>
+                    <h3>Internet das Coisas (IoT)</h3>
+                    <p>
+                        A Internet das Coisas refere-se à rede de dispositivos físicos conectados à internet, 
+                        capazes de coletar, processar e compartilhar dados em tempo real. Na robótica industrial, 
+                        IoT permite que máquinas se comuniquem entre si e com sistemas centrais de controle, 
+                        otimizando operações e aumentando eficiência.
+                    </p>
+                </div>
+
+                <!-- CARD 2: Robótica Industrial -->
+                <div class="concept-card">
+                    <div class="icon">🤖</div>
+                    <h3>Robótica Industrial</h3>
+                    <p>
+                        A robótica industrial envolve o design, fabricação e operação de robôs destinados a 
+                        realizar tarefas repetitivas, precisas e perigosas. Esses robôs são programáveis, 
+                        adaptáveis e podem ser integrados em linhas de produção para aumentar produtividade 
+                        e qualidade.
+                    </p>
+                </div>
+
+                <!-- CARD 3: Automação Industrial -->
+                <div class="concept-card">
+                    <div class="icon">⚙️</div>
+                    <h3>Automação Industrial</h3>
+                    <p>
+                        A automação industrial utiliza tecnologia para controlar e monitorar processos produtivos 
+                        com pouca ou nenhuma intervenção humana. Reduz custos, melhora precisão, aumenta 
+                        velocidade de produção e garante maior segurança aos trabalhadores.
+                    </p>
+                </div>
+
+                <!-- CARD 4: Relação Robótica + IoT -->
+                <div class="concept-card">
+                    <div class="icon">🔗</div>
+                    <h3>Robótica + IoT</h3>
+                    <p>
+                        A integração entre robótica industrial e IoT cria sistemas inteligentes e autônomos. 
+                        Robôs conectados podem receber instruções remotamente, compartilhar dados com outros 
+                        equipamentos e aprender com informações coletadas, formando ambientes de indústria 4.0.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE SENSORIAMENTO E IoT -->
+    <section id="sensoriamento" class="conceitos" style="background-color: #ffffff;">
+        <div class="container">
+            <h2 class="section-title">Sensoriamento e Internet das Coisas</h2>
+
+            <div class="content-text" style="max-width: 900px; margin: 0 auto 50px; text-align: center;">
+                <p style="color:#64748b; line-height:1.8; margin-bottom: 15px;">
+                    <strong>Sensoriamento</strong> é o processo pelo qual dispositivos eletrônicos, chamados
+                    sensores, captam grandezas físicas do ambiente — como temperatura, luminosidade, distância,
+                    umidade ou vibração — e as convertem em sinais elétricos que podem ser lidos, interpretados
+                    e processados por um microcontrolador ou computador.
+                </p>
+                <p style="color:#64748b; line-height:1.8; margin-bottom: 15px;">
+                    Na <strong>Automação Industrial</strong>, os sensores são os "olhos e ouvidos" dos sistemas
+                    automatizados: sem eles, máquinas e robôs não teriam como perceber o ambiente em que
+                    operam. São os sensores que permitem detectar a presença de uma peça em uma esteira, medir
+                    o nível de um tanque ou identificar a temperatura de um processo, tornando possível que o
+                    sistema tome decisões e realize ações corretivas de forma autônoma, aumentando a
+                    produtividade, a segurança e a qualidade dos processos produtivos.
+                </p>
+                <p style="color:#64748b; line-height:1.8;">
+                    Essa percepção só se torna útil quando combinada com a <strong>comunicação de dados</strong>
+                    e o <strong>controle de processos</strong>: o sensor capta a informação, essa informação é
+                    transmitida (por sinais analógicos, digitais ou protocolos como I2C, SPI, UART ou 4–20 mA)
+                    até um controlador — como um Arduino, ESP32, Raspberry Pi ou CLP — que a interpreta e aciona
+                    atuadores para corrigir ou ajustar o processo. É esse ciclo contínuo entre
+                    <em>sensoriamento → comunicação → controle</em> que forma a base da Internet das Coisas
+                    (IoT) aplicada à Indústria 4.0.
+                </p>
+            </div>
+
+            <div class="conceitos-grid">
+                <div class="concept-card">
+                    <div class="icon">🔌</div>
+                    <h3>Arduino</h3>
+                    <p>
+                        Plataforma de hardware livre com microcontrolador embarcado, programável através de uma
+                        IDE própria. É uma das formas mais acessíveis de ler sensores e controlar atuadores em
+                        projetos de automação e IoT.
+                    </p>
+                    <a href="./html/arduino.html" class="btn-secondary" style="margin-top:15px; display:inline-block;">Conhecer o Arduino</a>
+                </div>
+                <div class="concept-card">
+                    <div class="icon">📡</div>
+                    <h3>Catálogo de Sensores</h3>
+                    <p>
+                        Explore a ficha técnica completa de 25 sensores utilizados em projetos de IoT e
+                        Automação Industrial, com princípio de funcionamento, especificações, tipo de sinal e
+                        aplicações práticas.
+                    </p>
+                    <a href="./html/sensores.html" class="btn-secondary" style="margin-top:15px; display:inline-block;">Ver Sensores</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE ROBÔS -->
+    <section id="robo-list" class="robo-section">
+        <div class="container">
+            <h2 class="section-title">Modelos de Robôs Industriais</h2>
+            <div class="robo-grid">
+                <!-- CARTESIANO -->
+                <div class="robo-card" onclick="window.location.href='./html/cartesiano.html'">
+                    <div class="robo-icon">📦</div>
+                    <h3>Robô Cartesiano</h3>
+                    <p>Movimentação em três eixos lineares (X, Y, Z). Ideal para pick and place.</p>
+                    <button class="btn-secondary">Ver Detalhes</button>
+                </div>
+
+                <!-- SCARA -->
+                <div class="robo-card" onclick="window.location.href='./html/scara.html'">
+                    <div class="robo-icon">🔄</div>
+                    <h3>Robô SCARA</h3>
+                    <p>Movimento de braço com dois eixos rotativos horizontais. Alto desempenho.</p>
+                    <button class="btn-secondary">Ver Detalhes</button>
+                </div>
+
+                <!-- ARTICULADO -->
+                <div class="robo-card" onclick="window.location.href='./html/articulado.html'">
+                    <div class="robo-icon">🦾</div>
+                    <h3>Robô Articulado</h3>
+                    <p>Múltiplas articulações como braço humano. Máxima flexibilidade.</p>
+                    <button class="btn-secondary">Ver Detalhes</button>
+                </div>
+
+                <!-- CILÍNDRICO -->
+                <div class="robo-card" onclick="window.location.href='./html/cilindrico.html'">
+                    <div class="robo-icon">📈</div>
+                    <h3>Robô Cilíndrico</h3>
+                    <p>Movimento rotativo e linear. Estrutura cilíndrica de trabalho.</p>
+                    <button class="btn-secondary">Ver Detalhes</button>
+                </div>
+
+                <!-- DELTA -->
+                <div class="robo-card" onclick="window.location.href='./html/delta.html'">
+                    <div class="robo-icon">⚡</div>
+                    <h3>Robô Delta</h3>
+                    <p>Estrutura paralela com alta velocidade. Precisão extrema.</p>
+                    <button class="btn-secondary">Ver Detalhes</button>
+                </div>
+
+                <!-- POLAR -->
+                <div class="robo-card" onclick="window.location.href='./html/polar.html'">
+                    <div class="robo-icon">🔭</div>
+                    <h3>Robô Polar</h3>
+                    <p>Movimento rotativo e linear em formato polar.</p>
+                    <button class="btn-secondary">Ver Detalhes</button>
+                </div>
+
+                <!-- COLABORATIVO -->
+                <div class="robo-card" onclick="window.location.href='./html/colaborativo.html'">
+                    <div class="robo-icon">👥</div>
+                    <h3>Robô Colaborativo</h3>
+                    <p>Trabalha lado a lado com humanos de forma segura.</p>
+                    <button class="btn-secondary">Ver Detalhes</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="#conceitos">Conceitos</a></li>
+                        <li><a href="#robo-list">Robôs</a></li>
+                        <li><a href="./html/desafios.html">Desafios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <a href="https://wa.me/5548998041301" target="_blank">📱 +55(48)99804-1301</a><br>
+                    <a href="https://www.instagram.com/bernardi7072/">📧 @bernardi7072</a><br>
+                    <a href="https://github.com/larssia">👥 @larssia</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 RoboTech.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
