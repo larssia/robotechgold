@@ -1,176 +1,229 @@
-/* QUIZ ROBOTECH - estilo Kahoot: cronômetro, pontos por velocidade, sequência (streak) e recorde */
+/* QUIZ ROBOTECH - 10 questões estilo SAEP/ENEM, sem cronômetro */
 const IMG = "../assets/img/quiz/";
-const QUESTOES = [
-  { tema: "Robô", tempo: 40, correta: 1,
-    ctx: "Uma indústria de cosméticos precisa posicionar, em caixas, frascos plásticos de 30 g que passam sem parar em uma esteira. A tarefa exige altíssima velocidade (mais de 100 ciclos por minuto), boa precisão e carga muito baixa.",
-    p: "Qual modelo de robô industrial é o mais indicado para essa aplicação?",
-    op: ["Robô Cartesiano, de três eixos lineares, indicado para grandes cursos e cargas pesadas.",
-         "Robô Delta, de estrutura paralela e leve, indicado para pick and place em alta velocidade.",
-         "Robô Cilíndrico, de base giratória e braço linear, indicado para peças grandes e lentas.",
-         "Robô Articulado, de seis eixos rotativos, indicado para soldagem de carrocerias pesadas."],
-    ex: "O Delta tem braços paralelos leves e o motor fixo na base, o que permite altíssima aceleração com cargas baixas." },
-  { tema: "Sensores", tempo: 40, correta: 0,
-    ctx: "Em uma linha de usinagem, peças de aço passam por uma esteira coberta de óleo de corte e cavaco. Cada peça deve ser detectada a cerca de 4 mm do sensor, sem contato físico.",
-    p: "Qual sensor é o mais adequado para detectar as peças nesse ambiente?",
-    op: ["Indutivo, que detecta metais por campo eletromagnético e não é afetado por óleo ou sujeira.",
-         "Fotoelétrico por reflexão, cujo feixe de luz é prejudicado pelo óleo e pelo cavaco.",
-         "Termistor NTC, que mede a temperatura da peça e não a presença dela na esteira.",
-         "LDR, que responde apenas às variações de luminosidade do ambiente ao redor."],
-    ex: "O sensor indutivo só detecta metais, não tem contato e ignora óleo e poeira, ideal para chão de fábrica." },
-  { tema: "Sensores", tempo: 40, correta: 2,
-    ctx: "Um forno de tratamento térmico opera a cerca de 400 °C. Um projeto com Arduino precisa monitorar a temperatura interna do forno.",
-    p: "Qual sensor atende a essa faixa de temperatura?",
-    op: ["DHT11, que mede de 0 a 50 °C e serve para ambientes climatizados.",
-         "LM35, que mede até cerca de 150 °C com saída linear de 10 mV/°C.",
-         "Termopar tipo K com módulo amplificador, que mede temperaturas acima de 1000 °C.",
-         "NTC 10 kΩ comum, limitado a cerca de 125 °C pelo encapsulamento."],
-    ex: "Só o termopar tipo K (com módulo como o MAX6675) alcança centenas de graus. Os demais ficam abaixo de 150 °C." },
-  { tema: "Multímetro", tempo: 60, correta: 3, img: "multimetro.svg", alt: "Multímetro em DCV 20 marcando 4,97 V entre 5V e GND",
-    ctx: "Um técnico confere a alimentação de um Arduino Uno ligado ao USB. Ele gira a chave para DCV 20, liga a ponta preta em COM e a vermelha em VΩ e encosta as pontas nos pinos GND e 5V, obtendo a leitura da imagem.",
-    p: "Com base na imagem, é correto concluir que:",
-    op: ["a leitura é de 4,97 A, o que indica consumo de corrente elevado na placa.",
-         "a escala DCV 20 é inadequada e a medição exigiria a posição ACV 750.",
-         "a tensão está muito abaixo de 5 V, portanto a placa deve ser substituída.",
-         "a tensão contínua de 4,97 V é coerente com os 5 V nominais, e a alimentação está normal."],
-    ex: "A chave em DCV mede tensão contínua e 20 V comporta a leitura. 4,97 V está dentro da tolerância dos 5 V do USB." },
-  { tema: "Arduino", tempo: 40, correta: 1,
-    ctx: "Em um projeto de iluminação, um LED está ligado ao pino digital 9 do Arduino Uno (marcado com ~) e seu brilho é controlado por PWM com o comando analogWrite(9, 191).",
-    p: "Sabendo que o valor máximo de analogWrite é 255, o LED ficará em nível alto:",
-    op: ["50% do tempo, com brilho médio reduzido à metade.",
-         "75% do tempo, com brilho médio de cerca de três quartos.",
-         "25% do tempo, com brilho médio de cerca de um quarto.",
-         "100% do tempo, com brilho máximo e contínuo."],
-    ex: "Ciclo de trabalho = 191 ÷ 255 ≈ 0,75, ou seja, 75%." },
-  { tema: "Arduino", tempo: 60, correta: 2,
-    ctx: "Em um painel de sinalização com Arduino, um LED vermelho (queda de tensão de 2 V e corrente nominal de 20 mA) será alimentado pelo pino de 5 V por meio de um resistor em série.",
-    p: "Pela Lei de Ohm, qual resistor limita a corrente do LED a 20 mA?",
-    op: ["75 Ω", "100 Ω", "150 Ω", "250 Ω"],
-    ex: "R = (5 V − 2 V) ÷ 0,02 A = 150 Ω. Usar 250 Ω seria esquecer a queda de tensão do LED." },
-  { tema: "ESP32", tempo: 50, correta: 0,
-    ctx: "Uma equipe monta um monitor de nível de reservatório com ESP32, que envia as leituras por Wi-Fi a um painel na nuvem. O sensor HC-SR04 é alimentado com 5 V e seu pino ECHO devolve sinal de 5 V, mas os GPIOs do ESP32 trabalham com lógica de 3,3 V.",
-    p: "Qual medida protege o ESP32 nesse circuito?",
-    op: ["Usar um divisor de tensão ou conversor de nível entre o ECHO e o GPIO.",
-         "Ligar o ECHO ao pino EN, que funciona como entrada tolerante a 5 V.",
-         "Ler o ECHO com analogRead, pois entradas analógicas suportam 5 V.",
-         "Ligar o ECHO direto ao GPIO, pois todos os pinos do ESP32 toleram 5 V."],
-    ex: "Os GPIOs do ESP32 não são tolerantes a 5 V. Um divisor resistivo ou conversor de nível reduz o sinal a 3,3 V." },
-  { tema: "Código", tempo: 60, correta: 3, img: "codigo1.svg", alt: "Código presenca_luz.ino",
-    ctx: "Um sistema de iluminação automática usa um sensor PIR (presença) e um LDR, conforme o código da imagem. O LDR está ligado de modo que valores menores indicam ambiente mais escuro.",
-    p: "Qual situação faz o LED do pino 8 ficar aceso?",
-    op: ["Sem presença detectada e leitura do LDR igual a 800.",
-         "Sem presença detectada e leitura do LDR igual a 500.",
-         "Sem presença detectada e leitura do LDR igual a 650.",
-         "Presença detectada e leitura do LDR igual a 900, com ambiente claro."],
-    ex: "O operador || exige apenas uma condição verdadeira. Com presença = true o LED acende, mesmo com luz alta. Nas demais, luz < 500 é falso." },
-  { tema: "Código", tempo: 75, correta: 1, img: "codigo2.svg", alt: "Código estacionamento.ino",
-    ctx: "O código da imagem simula um sensor de estacionamento: o potenciômetro em A0 ajusta a distância-limite (cm) e medirDistanciaCm() retorna a distância do obstáculo. O potenciômetro está na posição central (leitura 512) e o carro está a 20 cm.",
-    p: "Considerando a divisão inteira do Arduino, como o LED do pino 8 se comporta?",
-    op: ["Fica apagado, pois a distância de 20 cm ultrapassa a metade do limite calculado.",
-         "Pisca a cada 100 ms, pois o limite é 27 cm e a distância está entre 13 cm e 27 cm.",
-         "Fica aceso fixo, pois a distância de 20 cm é menor que o limite de 27 cm.",
-         "Fica aceso fixo, pois o map retorna limite 50 e a metade desse valor é 25 cm."],
-    ex: "map(512, 0, 1023, 5, 50) = 512·45/1023 + 5 = 22 + 5 = 27. Como 27/2 = 13, e 20 > 13 mas 20 ≤ 27, cai no else if e o LED pisca." },
-  { tema: "Código", tempo: 60, correta: 2, img: "codigo3.svg", alt: "Código contador_pecas.ino",
-    ctx: "Um aluno testa a contagem de peças de uma esteira com o código da imagem. Ao ser carregado na placa, o setup() é executado uma única vez e o loop() está vazio.",
-    p: "Qual valor será exibido no Monitor Serial?",
-    op: ["8", "10", "20", "30"],
-    ex: "O laço soma 1·2 + 2·2 + 3·2 + 4·2 = 2 + 4 + 6 + 8 = 20. Como i <= 4 é inclusivo, o i = 5 não entra (isso daria 30)." }
-];
-
-const FORMAS = ["▲", "◆", "●", "■"], LETRAS = ["A", "B", "C", "D"];
-const app = document.getElementById("quiz-app");
-let est;
-
-function salvar(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
-function ler(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
-const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-
-function inicio() {
-  const rec = ler("robotech_quiz_recorde"), nome = ler("robotech_quiz_nome") || "";
-  app.innerHTML = `<div class="q-start">
-    <div class="q-logo">🧠</div><h2>Pronto para o desafio?</h2>
-    <p>${QUESTOES.length} questões • quanto mais rápido você acertar, mais pontos ganha (até 1000) • acertos seguidos dão bônus de sequência 🔥</p>
-    <input id="q-nome" maxlength="16" placeholder="Seu apelido" value="${esc(nome)}" autocomplete="off">
-    <button class="q-btn" id="q-go">Jogar</button>
-    ${rec ? `<div class="q-record">🏆 Recorde: <strong>${rec}</strong> pontos</div>` : ""}</div>`;
-  document.getElementById("q-go").onclick = () => {
-    const n = document.getElementById("q-nome").value.trim() || "Jogador";
-    salvar("robotech_quiz_nome", n);
-    est = { i: 0, pts: 0, seq: 0, acertos: 0, nome: n, hist: [] };
-    pergunta();
-  };
+const COD = {
+  1: `void setup() {
+  pinMode(13, OUTPUT);
 }
 
-let timer;
+void loop() {
+  digitalWrite(13, HIGH);
+  delay(1000);
+  digitalWrite(13, LOW);
+  delay(1000);
+}`,
+  2: `void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int valor = analogRead(A0);
+  Serial.println(valor);
+  delay(500);
+}`,
+  3: `int botao = 7;
+int led = 13;
+
+void setup() {
+  pinMode(botao, INPUT);
+  pinMode(led, OUTPUT);
+}
+
+void loop() {
+  if (digitalRead(botao) == HIGH) {
+    digitalWrite(led, HIGH);
+  } else {
+    digitalWrite(led, LOW);
+  }
+}`
+};
+
+/* correta = índice (0 = A) na ordem original da questão */
+const QUESTOES = [
+  { tema: "Robô UR3e", correta: 0,
+    ctx: "Em uma indústria, um robô colaborativo UR3e é utilizado para realizar tarefas de montagem e manipulação de pequenos componentes. Por possuir estrutura articulada e capacidade de trabalhar próximo aos operadores em determinadas aplicações, o equipamento pode ser programado para executar movimentos precisos e repetitivos.",
+    p: "Considerando as características do UR3e, sua utilização nesse cenário está relacionada principalmente à",
+    op: ["realização de tarefas automatizadas com movimentos precisos e programáveis.",
+         "geração de energia elétrica para os demais equipamentos da indústria.",
+         "substituição dos sensores responsáveis pela coleta de informações do ambiente.",
+         "execução exclusiva de tarefas que exigem movimentação de cargas muito pesadas."],
+    ex: "O UR3e é um cobot compacto e articulado, feito para tarefas leves de montagem, com programação flexível e movimentos repetitivos e precisos." },
+  { tema: "Sensores", correta: 0,
+    ctx: "Um robô móvel precisa identificar obstáculos durante seu deslocamento em um ambiente interno. Para isso, foi instalado um sensor que emite ondas e utiliza o tempo necessário para que elas retornem após atingir um objeto.",
+    p: "O sensor descrito é utilizado principalmente para",
+    op: ["medir a distância até um obstáculo.",
+         "controlar a tensão de alimentação do robô.",
+         "medir diretamente a corrente do motor.",
+         "armazenar os dados coletados pelo robô."],
+    ex: "É o princípio do sensor ultrassônico: distância = (tempo do eco × velocidade do som) / 2." },
+  { tema: "Sensores", correta: 0,
+    ctx: "Em um sistema automatizado de iluminação, um sensor LDR é utilizado para identificar se o ambiente está claro ou escuro. Durante o dia, a iluminação artificial permanece desligada. À noite, quando a luminosidade diminui, as lâmpadas são acionadas automaticamente.",
+    p: "Nesse sistema, o LDR tem a função de",
+    op: ["detectar variações de luminosidade do ambiente.",
+         "aumentar a tensão fornecida às lâmpadas.",
+         "controlar diretamente a velocidade das lâmpadas.",
+         "armazenar a programação utilizada pelo Arduino."],
+    ex: "O LDR é um resistor que muda a resistência conforme a luz recebida. Ele só informa a luminosidade; quem decide é o controlador." },
+  { tema: "Multímetro", correta: 0, img: "multimetro.svg", alt: "Multímetro digital com o seletor na escala DCV 20",
+    ctx: "Um estudante está realizando a manutenção de um circuito eletrônico e utiliza o multímetro apresentado na imagem.",
+    p: "Considerando a configuração apresentada, o instrumento está sendo utilizado para",
+    op: ["medir tensão contínua.",
+         "medir resistência elétrica.",
+         "medir corrente alternada.",
+         "testar a continuidade de um cabo."],
+    ex: "O seletor está na escala DCV (tensão contínua), com as pontas em VΩ e COM medindo a tensão entre 5 V e GND." },
+  { tema: "Arduino", correta: 1,
+    ctx: "O Arduino é bastante utilizado em projetos de automação porque permite conectar sensores e atuadores a um sistema programável. Em um projeto escolar, um aluno conecta um sensor de temperatura à placa e utiliza um programa para interpretar os valores recebidos.",
+    p: "Nesse projeto, o Arduino atua principalmente como",
+    op: ["fonte de energia exclusiva para qualquer dispositivo eletrônico.",
+         "controlador programável que processa entradas e controla saídas.",
+         "sensor responsável por medir diretamente a temperatura.",
+         "componente mecânico responsável pelos movimentos do sistema."],
+    ex: "O Arduino lê as entradas (sensores), processa o programa e comanda as saídas (atuadores). Quem mede a temperatura é o sensor." },
+  { tema: "Arduino", correta: 2,
+    ctx: "Durante uma aula de programação, um estudante precisa configurar um LED conectado a uma porta digital do Arduino para que ele possa ser acionado pelo programa.",
+    p: "A função normalmente utilizada para definir se uma porta será entrada ou saída é",
+    op: ["digitalWrite()", "analogRead()", "pinMode()", "delay()"],
+    ex: "pinMode(pino, INPUT ou OUTPUT) define o modo do pino. digitalWrite escreve HIGH/LOW, analogRead lê entradas analógicas e delay apenas espera." },
+  { tema: "ESP32", correta: 0,
+    ctx: "Um grupo está desenvolvendo um sistema de automação residencial. Além de controlar sensores e atuadores, os estudantes desejam que o dispositivo consiga enviar informações para um aplicativo por meio de uma rede Wi-Fi.",
+    p: "Para esse tipo de aplicação, uma característica importante de placas da família ESP, como o ESP32, é",
+    op: ["possuir conectividade sem fio integrada em modelos como o ESP32.",
+         "funcionar exclusivamente sem qualquer tipo de comunicação.",
+         "ser utilizada somente para medir tensão elétrica.",
+         "substituir mecanicamente motores e servomotores."],
+    ex: "O ESP32 já traz Wi-Fi e Bluetooth integrados, o que o torna ideal para IoT e automação residencial." },
+  { tema: "Código", correta: 2, cod: 1,
+    ctx: "Observe o código abaixo. Um estudante executa esse programa em um Arduino com um LED conectado à porta 13.",
+    p: "Considerando o funcionamento do código, o LED",
+    op: ["permanece sempre desligado.",
+         "permanece sempre ligado.",
+         "acende e apaga em intervalos de aproximadamente um segundo.",
+         "acende somente quando um sensor conectado ao Arduino é ativado."],
+    ex: "O loop liga o LED, espera 1000 ms, desliga e espera mais 1000 ms, repetindo para sempre. Não há sensor no programa." },
+  { tema: "Código", correta: 0, cod: 2,
+    ctx: "Em um projeto de monitoramento, um sensor analógico está conectado à porta A0 de um Arduino. O programa utilizado é apresentado abaixo.",
+    p: "A partir do funcionamento do programa, é correto afirmar que ele",
+    op: ["envia para o Monitor Serial os valores lidos pelo sensor.",
+         "transforma automaticamente o sensor em um atuador.",
+         "aciona um LED sempre que o sensor apresentar qualquer valor.",
+         "impede que o Arduino receba informações da porta A0."],
+    ex: "analogRead(A0) lê o sensor e Serial.println() mostra o valor no Monitor Serial a cada 500 ms. Nenhum LED é usado." },
+  { tema: "Código", correta: 1, cod: 3,
+    ctx: "Um sistema de automação possui um botão conectado à porta digital 7 e um LED conectado à porta 13. O trecho de programa utilizado é apresentado abaixo. Ao analisá-lo, percebe-se que o LED é acionado quando determinada condição relacionada ao botão é satisfeita.",
+    p: "Essa condição ocorre quando",
+    op: ["a leitura do botão é LOW.",
+         "a leitura do botão é HIGH.",
+         "o valor do botão é igual a 13.",
+         "o Arduino recebe um valor analógico pela porta A0."],
+    ex: "O if testa digitalRead(botao) == HIGH. Nesse caso o LED (pino 13) recebe HIGH e acende; caso contrário, apaga." }
+];
+
+const LETRAS = ["A", "B", "C", "D"];
+const app = document.getElementById("quiz-app");
+let est, ordem;
+
+const ler = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+const salvar = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function embaralhar(a) {
+  a = a.slice();
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
+function inicio() {
+  const rec = ler("robotech_quiz_pontos");
+  app.innerHTML = `<div class="q-start">
+    <div class="q-logo">🧠</div>
+    <h2>Pronto para o desafio?</h2>
+    <p>${QUESTOES.length} questões sobre robótica, sensores, multímetro, Arduino, ESP32 e programação. Sem cronômetro: cada acerto vale 100 pontos e acertos seguidos rendem bônus de sequência 🔥 (até +100 por questão).</p>
+    <button class="q-btn" id="q-go">Começar quiz</button>
+    ${rec !== null ? `<div class="q-record">🏆 Recorde: <strong>${rec}</strong> pontos</div>` : ""}</div>`;
+  document.getElementById("q-go").onclick = () => { est = { i: 0, acertos: 0, pts: 0, seq: 0, hist: [] }; pergunta(); };
+}
+
 function pergunta() {
   const q = QUESTOES[est.i];
-  est.t0 = Date.now(); est.resp = false;
-  app.innerHTML = `<div class="q-top"><span>Questão <b>${est.i + 1}</b>/${QUESTOES.length} • ${q.tema}</span>
-      <span class="q-score">${est.seq >= 2 ? "🔥" + est.seq + " " : ""}⭐ <b id="q-pts">${est.pts}</b></span></div>
-    <div class="q-bar"><div id="q-fill"></div></div>
+  ordem = embaralhar(q.op.map((_, k) => k));
+  est.resp = false;
+  app.innerHTML = `<div class="q-top"><span>Questão <b>${est.i + 1}</b> de ${QUESTOES.length} • ${q.tema}</span>
+      <span class="q-score">${est.seq >= 2 ? "🔥" + est.seq + " " : ""}⭐ <b>${est.pts}</b> pts</span></div>
+    <div class="q-bar"><div id="q-fill" style="width:${(est.i / QUESTOES.length) * 100}%"></div></div>
     <div class="q-ctx"><small>CONTEXTO</small><p>${q.ctx}</p></div>
+    ${q.cod ? `<pre class="q-code"><code>${esc(COD[q.cod])}</code></pre>` : ""}
     ${q.img ? `<img class="q-img" src="${IMG + q.img}" alt="${esc(q.alt)}">` : ""}
     <h3 class="q-enun">${q.p}</h3>
-    <div class="q-opts">${q.op.map((t, k) => `<button class="q-opt c${k}" data-k="${k}"><span class="q-forma">${FORMAS[k]}</span><span class="q-letra">${LETRAS[k]}</span><span>${t}</span></button>`).join("")}</div>
+    <div class="q-opts">${ordem.map((k, pos) => `<button class="q-opt" data-k="${k}"><span class="q-letra">${LETRAS[pos]}</span><span>${q.op[k]}</span></button>`).join("")}</div>
     <div id="q-fb"></div>`;
   app.querySelectorAll(".q-opt").forEach(b => b.onclick = () => responder(+b.dataset.k));
-  const fill = document.getElementById("q-fill");
-  clearInterval(timer);
-  timer = setInterval(() => {
-    const r = 1 - (Date.now() - est.t0) / (q.tempo * 1000);
-    fill.style.width = Math.max(r, 0) * 100 + "%";
-    fill.classList.toggle("low", r < 0.25);
-    if (r <= 0) responder(-1);
-  }, 100);
 }
 
 function responder(k) {
   if (est.resp) return;
-  est.resp = true; clearInterval(timer);
+  est.resp = true;
   const q = QUESTOES[est.i], ok = k === q.correta;
-  const frac = Math.min((Date.now() - est.t0) / (q.tempo * 1000), 1);
   let ganho = 0;
-  if (ok) {
-    est.seq++; est.acertos++;
-    ganho = Math.round(1000 * (1 - frac / 2)) + Math.min((est.seq - 1) * 100, 500);
-  } else est.seq = 0;
+  if (ok) { est.acertos++; est.seq++; ganho = 100 + Math.min((est.seq - 1) * 25, 100); }
+  else est.seq = 0;
   est.pts += ganho;
-  est.hist.push({ ok, ganho, k });
-  app.querySelectorAll(".q-opt").forEach((b, n) => {
+  est.hist.push(ok);
+  app.querySelectorAll(".q-opt").forEach(b => {
     b.disabled = true;
-    b.classList.add(n === q.correta ? "certa" : n === k ? "errada" : "apagada");
+    const v = +b.dataset.k;
+    if (v === q.correta) b.classList.add("certa");
+    else if (v === k) b.classList.add("errada");
+    else b.classList.add("apagada");
   });
-  document.getElementById("q-pts").textContent = est.pts;
   const ultima = est.i === QUESTOES.length - 1;
-  const titulo = k === -1 ? "⏰ Tempo esgotado!" : ok ? `✅ Correto! +${ganho} pontos` : "❌ Não foi dessa vez";
-  document.getElementById("q-fb").innerHTML = `<div class="q-fb ${ok ? "ok" : "no"}"><strong>${titulo}</strong>
-    <p>Resposta: <b>${LETRAS[q.correta]}</b>. ${q.ex}</p>
-    <button class="q-btn" id="q-next">${ultima ? "Ver resultado 🏁" : "Próxima ➜"}</button></div>`;
-  const next = document.getElementById("q-next");
-  next.onclick = () => { est.i++; ultima ? fim() : pergunta(); };
-  next.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  const fb = document.getElementById("q-fb");
+  fb.innerHTML = `<div class="q-fb ${ok ? "ok" : "no"}"><strong>${ok ? "✅ Resposta correta! +" + ganho + " pontos" + (est.seq >= 2 ? " (sequência 🔥" + est.seq + ")" : "") : "❌ Não foi dessa vez. Sequência zerada."}</strong>
+    <p>${q.ex}</p><button class="q-btn" id="q-next">${ultima ? "Ver resultado" : "Próxima questão →"}</button></div>`;
+  document.getElementById("q-next").onclick = () => { est.i++; ultima ? fim() : pergunta(); };
+  fb.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 function fim() {
-  const n = QUESTOES.length, pct = est.acertos / n;
-  const nivel = pct >= 0.9 ? ["🏆", "Mestre da Robótica"] : pct >= 0.7 ? ["🥇", "Técnico Especialista"] : pct >= 0.5 ? ["🥈", "Aprendiz Avançado"] : ["🥉", "Continue praticando"];
-  const rec = +(ler("robotech_quiz_recorde") || 0), novo = est.pts > rec;
-  if (novo) salvar("robotech_quiz_recorde", est.pts);
-  app.innerHTML = `<div class="q-end"><div class="q-logo">${nivel[0]}</div>
-    <h2>${esc(est.nome)}, você é ${nivel[1]}!</h2>
-    <div class="q-final"><b>${est.pts}</b> pontos</div>
-    ${novo ? `<div class="q-record">🎉 Novo recorde!</div>` : `<div class="q-record">🏆 Recorde: ${rec}</div>`}
-    <p>${est.acertos} de ${n} acertos (${Math.round(pct * 100)}%)</p>
-    <div class="q-review">${est.hist.map((h, x) => `<span class="${h.ok ? "ok" : "no"}" title="Questão ${x + 1}">${x + 1}${h.ok ? "✓" : "✗"}</span>`).join("")}</div>
+  const n = QUESTOES.length, a = est.acertos;
+  const rec = +(ler("robotech_quiz_pontos") ?? -1), novo = est.pts > rec;
+  if (novo) salvar("robotech_quiz_pontos", est.pts);
+  const [emoji, msg] = a === n ? ["🏆", "Perfeito! Você domina o assunto."] : a >= 7 ? ["🎉", "Muito bem! Falta pouco para a nota máxima."] : a >= 5 ? ["👍", "Bom começo! Revise os conteúdos e tente de novo."] : ["📚", "Vale estudar mais as páginas do site e tentar novamente."];
+  app.innerHTML = `<div class="q-end"><div class="q-logo">${emoji}</div>
+    <h2>${msg}</h2>
+    <div class="q-final"><b>${est.pts}</b> pontos</div><p class="q-acertos">${a} de ${n} acertos</p>
+    <div class="q-review">${est.hist.map((ok, i) => `<span class="${ok ? "ok" : "no"}">${i + 1}</span>`).join("")}</div>
+    ${novo ? `<div class="q-record q-novo">🎯 Novo recorde!</div>` : `<div class="q-record">🏆 Recorde: <strong>${rec}</strong> pontos</div>`}
     <button class="q-btn" id="q-again">Jogar novamente</button></div>`;
-  document.getElementById("q-again").onclick = inicio;
+  document.getElementById("q-again").onclick = () => { pararConfete(); inicio(); };
+  if (a >= 5) confete(a === n || novo ? 220 : 110);
 }
 
-document.addEventListener("keydown", e => {
-  if (!est || !app.querySelector(".q-opt")) return;
-  const k = "abcd1234".indexOf(e.key.toLowerCase());
-  if (k >= 0 && !est.resp) responder(k % 4);
-  else if (e.key === "Enter" && est.resp) { const b = document.getElementById("q-next"); if (b) b.click(); }
-});
+/* Confete em canvas, sem bibliotecas */
+let cvs, anim;
+function pararConfete() { cancelAnimationFrame(anim); if (cvs) { cvs.remove(); cvs = null; } }
+function confete(qtd) {
+  pararConfete();
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  cvs = document.createElement("canvas");
+  cvs.className = "q-confete";
+  document.body.appendChild(cvs);
+  const ctx = cvs.getContext("2d"), cores = ["#6366f1", "#ec4899", "#14b8a6", "#fbbf24", "#22c55e"];
+  const W = cvs.width = innerWidth, H = cvs.height = innerHeight;
+  const ps = Array.from({ length: qtd }, (_, i) => ({
+    x: Math.random() * W, y: -20 - Math.random() * H * 0.6, w: 6 + Math.random() * 6, h: 10 + Math.random() * 8,
+    vx: -1.5 + Math.random() * 3, vy: 2 + Math.random() * 3.5, rot: Math.random() * 6, vr: -0.2 + Math.random() * 0.4,
+    c: cores[i % cores.length] }));
+  const t0 = Date.now();
+  (function quadro() {
+    ctx.clearRect(0, 0, W, H);
+    ps.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      ctx.fillStyle = p.c; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); ctx.restore();
+    });
+    if (Date.now() - t0 < 6000 && ps.some(p => p.y < H + 20)) anim = requestAnimationFrame(quadro);
+    else pararConfete();
+  })();
+}
 
 inicio();
