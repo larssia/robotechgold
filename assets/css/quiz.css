@@ -1,0 +1,51 @@
+/* QUIZ ROBOTECH - visual estilo Kahoot (usa as variáveis de styles.css) */
+.quiz-section { padding: 45px 0 90px; background: linear-gradient(180deg, #fff 0%, var(--light-bg) 100%); }
+.quiz-box { max-width: 860px; margin: 0 auto; background: #fff; border-radius: 20px; padding: 28px; box-shadow: 0 8px 30px rgba(0,0,0,.1); border-top: 5px solid var(--primary-color); }
+
+.q-start, .q-end { text-align: center; }
+.q-logo { font-size: 4rem; }
+.q-start h2, .q-end h2 { color: var(--text-dark); margin: 8px 0 12px; }
+.q-start p, .q-end p { color: #64748b; margin-bottom: 18px; }
+#q-nome { width: 100%; max-width: 280px; padding: 12px 16px; border: 2px solid var(--border-color); border-radius: 12px; font-size: 1rem; text-align: center; margin-bottom: 16px; }
+#q-nome:focus { outline: none; border-color: var(--primary-color); }
+.q-btn { background: var(--primary-color); color: #fff; border: none; border-radius: 12px; padding: 13px 34px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: var(--transition); box-shadow: 0 4px 0 #4338ca; display: block; margin: 0 auto; }
+.q-btn:hover { transform: translateY(-2px); }
+.q-record { margin-top: 16px; color: var(--text-dark); }
+.q-final { font-size: 1.4rem; color: var(--primary-color); margin-bottom: 6px; }
+.q-final b { font-size: 3.2rem; }
+
+.q-top { display: flex; justify-content: space-between; font-weight: 600; color: var(--text-dark); margin-bottom: 10px; }
+.q-score { background: #fef3c7; padding: 2px 14px; border-radius: 50px; }
+.q-bar { height: 12px; background: var(--border-color); border-radius: 10px; overflow: hidden; margin-bottom: 18px; }
+#q-fill { height: 100%; width: 100%; background: var(--accent-color); transition: width .1s linear; }
+#q-fill.low { background: #ef4444; }
+
+.q-ctx { background: #f8fafc; border-left: 5px solid var(--accent-color); border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; color: #475569; }
+.q-ctx small { font-weight: 700; color: var(--accent-color); letter-spacing: 1px; }
+.q-img { display: block; max-width: 100%; max-height: 430px; margin: 0 auto 16px; border-radius: 12px; }
+.q-enun { color: var(--text-dark); font-size: 1.2rem; margin-bottom: 16px; }
+
+.q-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.q-opt { display: flex; align-items: center; gap: 10px; min-height: 92px; padding: 14px; border: none; border-radius: 12px; color: #fff; font-size: .95rem; font-weight: 600; text-align: left; cursor: pointer; transition: var(--transition); }
+.q-opt:hover:not(:disabled) { transform: translateY(-3px); filter: brightness(1.08); }
+.q-opt:disabled { cursor: default; }
+.q-forma { font-size: 1.6rem; }
+.q-letra { background: rgba(0,0,0,.22); border-radius: 50%; min-width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: .85rem; }
+.c0 { background: #e21b3c; } .c1 { background: #1368ce; } .c2 { background: #d89e00; } .c3 { background: #26890c; }
+.q-opt.apagada { opacity: .3; }
+.q-opt.certa { outline: 4px solid #22c55e; box-shadow: 0 0 0 4px #fff inset; }
+.q-opt.errada { outline: 4px solid #111; opacity: .6; }
+
+.q-fb { margin-top: 18px; padding: 16px 20px; border-radius: 12px; }
+.q-fb.ok { background: #dcfce7; } .q-fb.no { background: #fee2e2; }
+.q-fb p { margin: 8px 0 14px; color: #334155; }
+
+.q-review { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 22px; }
+.q-review span { padding: 6px 12px; border-radius: 8px; font-weight: 700; color: #fff; }
+.q-review .ok { background: #22c55e; } .q-review .no { background: #ef4444; }
+
+@media (max-width: 640px) {
+  .quiz-box { padding: 18px; }
+  .q-opts { grid-template-columns: 1fr; }
+  .q-opt { min-height: 70px; }
+}

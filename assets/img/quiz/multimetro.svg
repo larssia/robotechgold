@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 620" role="img" aria-label="Multímetro digital na escala DCV 20 medindo entre 5V e GND do Arduino">
+<rect x="60" y="10" width="280" height="470" rx="28" fill="#f4b400" stroke="#8a6500" stroke-width="3"/>
+<rect x="90" y="40" width="220" height="90" rx="10" fill="#b7c9a8" stroke="#333" stroke-width="3"/>
+<text x="290" y="108" text-anchor="end" font-family="Consolas,monospace" font-size="54" font-weight="700" fill="#1b2a12">4,97</text>
+<text x="100" y="62" font-family="Arial" font-size="13" font-weight="700" fill="#1b2a12">DC</text>
+<text x="298" y="62" text-anchor="end" font-family="Arial" font-size="15" font-weight="700" fill="#1b2a12">V</text>
+<circle cx="200" cy="330" r="74" fill="#222" stroke="#000" stroke-width="3"/>
+<circle cx="200" cy="330" r="22" fill="#555"/>
+<text x="112" y="385" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#222">OFF</text>
+<text x="112" y="283" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#222">DCV 20</text>
+<text x="200" y="232" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#222">ACV 750</text>
+<text x="288" y="283" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#222">Ω 200</text>
+<text x="288" y="385" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#222">DCA 200m</text>
+<line x1="200" y1="330" x2="139" y2="295" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+<circle cx="110" cy="450" r="13" fill="#111"/><text x="110" y="430" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#222">10A</text>
+<circle cx="165" cy="450" r="13" fill="#111"/><text x="165" y="430" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#222">mA</text>
+<circle cx="235" cy="450" r="13" fill="#111"/><text x="235" y="430" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#222">COM</text>
+<circle cx="290" cy="450" r="13" fill="#111"/><text x="290" y="430" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#222">VΩ</text>
+<path d="M235 450 C235 520 120 500 110 560" stroke="#111" stroke-width="5" fill="none"/>
+<path d="M290 450 C290 520 280 520 290 560" stroke="#d00" stroke-width="5" fill="none"/>
+<rect x="60" y="560" width="120" height="44" rx="6" fill="#0a7a8a"/><text x="120" y="588" text-anchor="middle" font-family="Arial" font-size="15" font-weight="700" fill="#fff">GND</text>
+<rect x="240" y="560" width="100" height="44" rx="6" fill="#0a7a8a"/><text x="290" y="588" text-anchor="middle" font-family="Arial" font-size="15" font-weight="700" fill="#fff">5V</text>
+</svg>

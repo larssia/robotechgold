@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 554" role="img" aria-label="presenca_luz.ino">
+<rect width="640" height="554" rx="12" fill="#0d1117"/><rect width="640" height="34" rx="12" fill="#161b22"/><rect y="20" width="640" height="14" fill="#161b22"/>
+<circle cx="20" cy="17" r="6" fill="#ff5f56"/><circle cx="40" cy="17" r="6" fill="#ffbd2e"/><circle cx="60" cy="17" r="6" fill="#27c93f"/>
+<text x="320" y="22" text-anchor="middle" font-family="Arial" font-size="13" fill="#8b949e">presenca_luz.ino</text>
+<text x="14" y="62" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">1</text>
+<text x="48" y="62" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3"><tspan fill="#ff7b72">const</tspan> <tspan fill="#ff7b72">int</tspan> PINO_PIR = <tspan fill="#d2a8ff">2</tspan>;</text>
+<text x="14" y="88" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">2</text>
+<text x="48" y="88" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3"><tspan fill="#ff7b72">const</tspan> <tspan fill="#ff7b72">int</tspan> PINO_LDR = <tspan fill="#79c0ff">A0</tspan>;</text>
+<text x="14" y="114" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">3</text>
+<text x="48" y="114" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3"><tspan fill="#ff7b72">const</tspan> <tspan fill="#ff7b72">int</tspan> PINO_LED = <tspan fill="#d2a8ff">8</tspan>;</text>
+<text x="14" y="140" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">4</text>
+<text x="48" y="140" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3"></text>
+<text x="14" y="166" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">5</text>
+<text x="48" y="166" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3"><tspan fill="#ff7b72">void</tspan> setup() {</text>
+<text x="14" y="192" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">6</text>
+<text x="48" y="192" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3">  <tspan fill="#79c0ff">pinMode</tspan>(PINO_PIR, <tspan fill="#79c0ff">INPUT</tspan>);</text>
+<text x="14" y="218" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">7</text>
+<text x="48" y="218" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3">  <tspan fill="#79c0ff">pinMode</tspan>(PINO_LED, <tspan fill="#79c0ff">OUTPUT</tspan>);</text>
+<text x="14" y="244" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">8</text>
+<text x="48" y="244" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3">}</text>
+<text x="14" y="270" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">9</text>
+<text x="48" y="270" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3"></text>
+<text x="14" y="296" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">10</text>
+<text x="48" y="296" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3"><tspan fill="#ff7b72">void</tspan> loop() {</text>
+<text x="14" y="322" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">11</text>
+<text x="48" y="322" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3">  <tspan fill="#ff7b72">bool</tspan> presenca = <tspan fill="#79c0ff">digitalRead</tspan>(PINO_PIR);</text>
+<text x="14" y="348" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">12</text>
+<text x="48" y="348" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3">  <tspan fill="#ff7b72">int</tspan> luz = <tspan fill="#79c0ff">analogRead</tspan>(PINO_LDR); <tspan fill="#8b949e">// 0 a 1023</tspan></text>
+<text x="14" y="374" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">13</text>
+<text x="48" y="374" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3"></text>
+<text x="14" y="400" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">14</text>
+<text x="48" y="400" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3">  <tspan fill="#ff7b72">if</tspan> (presenca || luz &lt; <tspan fill="#d2a8ff">500</tspan>) {</text>
+<text x="14" y="426" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">15</text>
+<text x="48" y="426" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3">    <tspan fill="#79c0ff">digitalWrite</tspan>(PINO_LED, <tspan fill="#79c0ff">HIGH</tspan>);</text>
+<text x="14" y="452" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">16</text>
+<text x="48" y="452" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3">  } <tspan fill="#ff7b72">else</tspan> {</text>
+<text x="14" y="478" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">17</text>
+<text x="48" y="478" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3">    <tspan fill="#79c0ff">digitalWrite</tspan>(PINO_LED, <tspan fill="#79c0ff">LOW</tspan>);</text>
+<text x="14" y="504" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">18</text>
+<text x="48" y="504" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3">  }</text>
+<text x="14" y="530" font-family="Consolas,Menlo,monospace" font-size="15" fill="#484f58">19</text>
+<text x="48" y="530" xml:space="preserve" font-family="Consolas,Menlo,monospace" font-size="15" fill="#e6edf3">}</text>
+</svg>
